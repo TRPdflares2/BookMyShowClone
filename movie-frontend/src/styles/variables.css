@@ -1,0 +1,11 @@
+:root {
+    --primary: #e50914;
+    /* Netflix red */
+    --secondary: #1c1c1c;
+    --card-bg: #181818;
+
+    --text-primary: #ffffff;
+    --text-secondary: #b3b3b3;
+
+    --border-radius: 8px;
+}

@@ -1,0 +1,93 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+enum Role {
+  USER
+  ADMIN
+}
+enum SeatStatus {
+  AVAILABLE
+  LOCKED
+  BOOKED
+}
+enum SeatType {
+  GOLD
+  SILVER
+  RECLINER
+}
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+  CANCELLED
+}
+model user {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())   
+  bookings  Booking[]
+}
+model Movie {
+  id          Int      @id @default(autoincrement())
+  title       String   @unique
+  description String?
+  genre       String
+  duration    Int
+  createdAt   DateTime @default(now())
+
+  showtimes   Showtime[]
+}
+model Showtime {
+  id        Int      @id @default(autoincrement())
+  movieId   Int
+  startTime DateTime
+  screen    String
+  createdAt DateTime @default(now())
+
+  movie     Movie    @relation(fields: [movieId], references: [id],onDelete: Cascade)
+  seats     Seat[]
+  bookings  Booking[]
+  @@unique([startTime, screen])
+}
+model Seat {
+  id          Int        @id @default(autoincrement())
+  showtimeId  Int
+  row         String
+  number      Int
+
+  type        SeatType
+  status      SeatStatus @default(AVAILABLE)
+
+
+  lockedAt    DateTime?   
+  lockedBy    Int?        
+
+  showtime    Showtime   @relation(fields: [showtimeId], references: [id], onDelete: Cascade)
+
+  @@unique([showtimeId, row, number])
+}
+
+model Booking {
+  id          Int            @id @default(autoincrement())
+  userId      Int
+  showtimeId  Int
+  totalAmount Int
+  status      BookingStatus  @default(PENDING)
+  seatsJson   Json
+  createdAt   DateTime       @default(now())
+
+  user        user           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  showtime    Showtime       @relation(fields: [showtimeId], references: [id], onDelete: Cascade)
+}

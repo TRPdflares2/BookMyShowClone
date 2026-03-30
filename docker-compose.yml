@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: movieapp
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    container_name: backend
+    expose:
+      - "3000"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./movie-frontend
+    container_name: frontend
+    expose:
+    - "80"
+    depends_on:
+      - backend
+
+volumes:
+  pgdata:

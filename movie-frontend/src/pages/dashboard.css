@@ -1,0 +1,91 @@
+.dashboard-page {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0b0f19 0%, #111827 100%);
+}
+
+.dashboard-container {
+    width: min(1100px, 92%);
+    margin: 0 auto;
+    padding: 50px 0 70px;
+}
+
+.dashboard-hero {
+    background: linear-gradient(135deg, #1a2235 0%, #111827 100%);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 28px;
+    padding: 56px 32px;
+    text-align: center;
+    box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+.dashboard-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 14px;
+}
+
+.dashboard-subtitle {
+    color: #cbd5e1;
+    font-size: 1.08rem;
+    max-width: 700px;
+    margin: 0 auto 34px;
+    line-height: 1.7;
+}
+
+.dashboard-actions {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.dashboard-primary-btn,
+.dashboard-secondary-btn {
+    padding: 14px 24px;
+    border-radius: 14px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.dashboard-primary-btn {
+    border: none;
+    background: #e50914;
+    color: white;
+}
+
+.dashboard-primary-btn:hover {
+    background: #ff1f2d;
+    transform: translateY(-1px);
+}
+
+.dashboard-secondary-btn {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: transparent;
+    color: white;
+}
+
+.dashboard-secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+@media (max-width: 768px) {
+    .dashboard-hero {
+        padding: 40px 22px;
+    }
+
+    .dashboard-title {
+        font-size: 2.1rem;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+    }
+
+    .dashboard-primary-btn,
+    .dashboard-secondary-btn {
+        width: 100%;
+    }
+}
