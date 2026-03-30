@@ -7,6 +7,13 @@ const bookingRoutes = require("./routes/bookingRoutes");
 const reservationRoutes = require("./routes/reservationRoutes");
 const app = express();
 app.use(express.json());
+app.use(
+  cors({
+    origin: "https://book-my-show-clone-khaki.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  }),
+);
 app.set("trust proxy", 1);
 app.use("/auth", authRoutes);
 app.use("/movies", movieRoutes);
