@@ -26,10 +26,3 @@ DELETE /reservations/:id
 ADMIN
 GET /reservations
 
-Admin created: {
-  id: 2,
-  email: 'admin@movie.com',
-  password: '$2b$10$QiHQ5VxddYEAOILNS92EQeZqRShPvHtC8hg7EfpEjmhsxJ6JMyZ/u',
-  role: 'ADMIN',
-  createdAt: 2026-03-12T08:09:54.010Z
-}
