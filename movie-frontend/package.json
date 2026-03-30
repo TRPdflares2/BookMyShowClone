@@ -27,11 +27,13 @@
     "vite": "^8.0.0"
   },
   
-  "rewrites": [
+
+  "routes": [
     {
-      "source": "/api/:path*",
-      "destination": "http://3.107.240.187/api/:path*"
+      "src": "/api/(.*)",
+      "dest": "http://3.107.240.187/api/$1"
     }
   ]
+
 
 }
