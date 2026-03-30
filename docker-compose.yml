@@ -32,13 +32,5 @@ services:
     depends_on:
       - postgres
 
-  frontend:
-    build: ./movie-frontend
-    container_name: frontend
-    expose:
-    - "80"
-    depends_on:
-      - backend
-
 volumes:
   pgdata:
